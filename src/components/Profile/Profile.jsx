@@ -1,5 +1,5 @@
 import s from './Profile.module.css';
-import Post from "./Post/Post";
+import Posts from "./Posts/Posts";
 
 const Profile = () => {
     return (
@@ -18,15 +18,7 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
-            <div className={s.makeNewPost}>
-                <input placeholder="What's new ?" type="text"/>
-                <button>Post</button>
-            </div>
-            <div className={s.myPosts}>
-                <Post/>
-                <Post/>
-                <Post/>
-            </div>
+            <Posts/>
         </div>
     )
 }
