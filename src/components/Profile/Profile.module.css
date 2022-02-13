@@ -28,14 +28,14 @@
     width: 100%;
     height: 100%;
 }
-.newPost {
+.makeNewPost {
     display: flex;
     flex-direction: column;
     width: 500px;
     position: relative;
     padding-bottom: 30px;
 }
-.newPost::after {
+.makeNewPost::after {
     content: '';
     position: absolute;
     width: 100%;
@@ -44,14 +44,14 @@
     bottom: 0;
     background-color: #333335;
 }
-.newPost input{
+.makeNewPost input{
     width: 100%;
     height: 70px;
     background-color: #444446;
     padding: 10px;
     margin-bottom: 10px;
 }
-.newPost button {
+.makeNewPost button {
     height: 40px;
     width: 150px;
     border-radius: 20px;
@@ -59,11 +59,4 @@
     color: #ffffff;
     align-self: flex-end;
 }
-.myPosts {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    font-size: 2.3rem;
-}
-.myPosts div{
-    margin-top: 30px;
-}
+
