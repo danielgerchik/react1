@@ -1,0 +1,15 @@
+.header {
+    background-color: RGB(51, 51, 53);
+    height: 80px;
+}
+.container {
+    max-width: 990px;
+    padding: 0 15px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.img {
+    transform: rotate(90deg);
+}

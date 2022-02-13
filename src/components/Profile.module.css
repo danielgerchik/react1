@@ -1,0 +1,69 @@
+.profile {
+    color: #fff;
+}
+.name {
+    font-size: 2.7rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.about {
+    display: flex;
+    height: 270px;
+    overflow: hidden;
+    margin-bottom: 80px;
+}
+.aboutMe {
+    line-height: 1.3;
+    font-family: 'Roboto', sans-serif;
+    font-style: italic;
+}
+.img {
+    width: 270px;
+    height: 270px;
+    margin: 0 30px 0 0;
+    flex: 0 0 270px;
+}
+.img img {
+    width: 100%;
+    height: 100%;
+}
+.newPost {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    position: relative;
+    padding-bottom: 30px;
+}
+.newPost::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: 0;
+    bottom: 0;
+    background-color: #333335;
+}
+.newPost input{
+    width: 100%;
+    height: 70px;
+    background-color: #444446;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.newPost button {
+    height: 40px;
+    width: 150px;
+    border-radius: 20px;
+    background-color: #666666;
+    color: #ffffff;
+    align-self: flex-end;
+}
+.myPosts {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 2.3rem;
+}
+.myPosts div{
+    margin-top: 30px;
+}
