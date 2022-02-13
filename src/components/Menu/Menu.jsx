@@ -1,14 +1,15 @@
 import s from './Menu.module.css';
 import MenuItem from "./MenuItem/MenuItem";
+
 const Menu = () => {
-    return(
+    return (
         <nav className={s.menu}>
             <ul>
-                <MenuItem name="Profile"/>
-                <MenuItem name="News"/>
-                <MenuItem name="Message"/>
-                <MenuItem name="Music"/>
-                <MenuItem name="Settings"/>
+                <MenuItem path="profile" name="Profile"/>
+                <MenuItem path="news" name="News"/>
+                <MenuItem path="messages" name="Message"/>
+                <MenuItem path="music" name="Music"/>
+                <MenuItem path="settings" name="Settings"/>
             </ul>
         </nav>
     )
