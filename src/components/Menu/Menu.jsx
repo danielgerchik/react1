@@ -5,11 +5,11 @@ const Menu = () => {
     return (
         <nav className={s.menu}>
             <ul>
-                <MenuItem path="profile" name="Profile"/>
-                <MenuItem path="news" name="News"/>
-                <MenuItem path="messages" name="Message"/>
-                <MenuItem path="music" name="Music"/>
-                <MenuItem path="settings" name="Settings"/>
+                <MenuItem path="/profile" name="Profile"/>
+                <MenuItem path="/news" name="News"/>
+                <MenuItem path="/messages" name="Message"/>
+                <MenuItem path="/music" name="Music"/>
+                <MenuItem path="/settings" name="Settings"/>
             </ul>
         </nav>
     )

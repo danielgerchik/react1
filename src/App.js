@@ -8,12 +8,12 @@ import Messages from "./components/Messages/Messages";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {Routes, Route, BrowserRouter} from "react-router-dom";
+import {Routes, Route,  BrowserRouter as Router} from "react-router-dom";
 
 
 const App = props => {
     return (
-        <BrowserRouter>
+        <Router>
             <div className="wrapper">
                 <Header/>
                 <div className="main-row">
@@ -21,8 +21,8 @@ const App = props => {
 
                     <main className="content">
                         <Routes>
-                            <Route path="/profile" element={<Profile/>}/>
-                            <Route path="/messages" element={<Messages/>}/>
+                            <Route path="/profile" element={<Profile dataPosts={props}/>}/>
+                            <Route path="/messages" element={<Messages dataInterlocutors={props} dataDialogs={props}/>}/>
                             <Route path="/news" element={<News/>}/>
                             <Route path="/music" element={<Music/>}/>
                             <Route path="/settings" element={<Settings/>}/>
@@ -32,7 +32,7 @@ const App = props => {
 
                 </div>
             </div>
-        </BrowserRouter>
+        </Router>
     );
 }
 

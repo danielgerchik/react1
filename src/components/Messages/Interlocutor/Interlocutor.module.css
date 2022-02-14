@@ -1,0 +1,10 @@
+
+.interlocutor a{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    color: #ffffff;
+    text-decoration: none;
+}
+.interlocutor:not(:last-child) {
+    margin-bottom: 20px;
+}

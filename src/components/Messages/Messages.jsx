@@ -1,19 +1,40 @@
 import s from './Messages.module.css';
+import Interlocutor from "./Interlocutor/Interlocutor";
+import Dialog from "./Dialog/Dialog";
+
+// const interlocutorsArray = [
+//     {path: 'vanya', name: 'Ваня'},
+//     {path: 'masha', name: 'Маша'},
+//     {path: 'tanya', name: 'Таня'},
+//     {path: 'sasha', name: 'Саша'},
+// ]
+// const dialogsArray = [
+//     {dialogItem: 'Привет'},
+//     {dialogItem: 'Как дела ?'},
+//     {dialogItem: 'Че делаешь ?'},
+//     {dialogItem: 'Всё ок'},
+// ]
+
+// const interlocutors = interlocutorsArray.map(el => {
+//     return <Interlocutor path={el.path} name={el.name}/>
+// })
+
+// const dialogs = dialogsArray.map(el => <Dialog dialogItem = {el.dialogItem}/>)
 
 const Messages = props => {
+    const interLocutorsArr = props.dataInterlocutors.dataInterlocutors
+    const interlocutors = interLocutorsArr.map(el => {
+        return <Interlocutor path={el.path} name={el.name}/>
+    })
+    const dialogsArr = props.dataDialogs.dataDialogs
+    const dialogs = dialogsArr.map(el => <Dialog dialogItem = {el.dialogItem}/>)
     return (
         <div className={s.messages}>
            <div className={s.interlocutors}>
-               <div className={s.interlocutor}>Ваня</div>
-               <div className={s.interlocutor}>Петя</div>
-               <div className={s.interlocutor}>Маша</div>
-               <div className={s.interlocutor}>Даня</div>
+               {interlocutors}
            </div>
             <div className={s.dialogs}>
-                <div className={s.dialog}>Привет</div>
-                <div className={s.dialog}>Как дела ?</div>
-                <div className={s.dialog}>Че делаешь ?</div>
-                <div className={s.dialog}>Я знаю это</div>
+                {dialogs}
             </div>
         </div>
     )

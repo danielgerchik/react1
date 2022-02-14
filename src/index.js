@@ -4,9 +4,27 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const postsArray = [
+    {number: "Post1"},
+    {number: "Post2"},
+    {number: "Post3"},
+]
+const interlocutorsArray = [
+    {path: 'vanya', name: 'Ваня'},
+    {path: 'masha', name: 'Маша'},
+    {path: 'tanya', name: 'Таня'},
+    {path: 'sasha', name: 'Саша'},
+]
+const dialogsArray = [
+    {dialogItem: 'Привет'},
+    {dialogItem: 'Как дела ?'},
+    {dialogItem: 'Че делаешь ?'},
+    {dialogItem: 'Всё ок'},
+]
+
 ReactDOM.render(
     <React.StrictMode>
-        <App/>
+        <App dataPosts={postsArray} dataInterlocutors={interlocutorsArray} dataDialogs={dialogsArray}/>
     </React.StrictMode>,
     document.getElementById('root')
 );
