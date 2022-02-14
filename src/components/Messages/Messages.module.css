@@ -1,0 +1,26 @@
+.messages {
+    display: flex;
+    font-family: 'Montserrat', sans-serif;
+
+    color: #ffffff;
+}
+.interlocutors {
+ flex: 0 0 200px;
+}
+.interlocutor {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    color: #ffffff;
+}
+.interlocutor:not(:last-child) {
+    margin-bottom: 20px;
+}
+.dialogs {
+    flex: 0 0 500px;
+}
+.dialog {
+    font-size: 2rem;
+    background-color: #444446;
+    padding: 10px;
+    border: 1px solid #777777;
+}
