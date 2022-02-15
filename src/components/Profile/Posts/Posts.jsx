@@ -1,16 +1,11 @@
 import s from "./Posts.module.css";
 import Post from "./Post/Post";
 
-// const postsArray = [
-//     {number: "Post1"},
-//     {number: "Post2"},
-//     {number: "Post3"},
-// ]
-// const postItems = postsArray.map( el => <Post postNumber={el.number}/>)
+
 
 const Posts = props => {
-    const postsArr = props.dataPosts.dataPosts.dataPosts
-    const postItems = postsArr.map( el => <Post postNumber={el.number}/>)
+
+    const postItems = props.dataPosts.map( el => <Post postNumber={el.number}/>)
     return (
         <div className={s.posts}>
             <div className={s.makeNewPost}>
