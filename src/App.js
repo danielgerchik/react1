@@ -9,7 +9,7 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {Routes, Route,  BrowserRouter as Router} from "react-router-dom";
-import {addPost} from "./redux/state";
+
 
 
 const App = props => {
@@ -22,8 +22,8 @@ const App = props => {
 
                     <main className="content">
                         <Routes>
-                            <Route path="/profile" element={<Profile dataPosts={props.state.profilePage} addPost={props.addPost} newText={props.state.profilePage.newText} changeNewTextValue={props.changeNewTextValue}/>}/>
-                            <Route path="/messages" element={<Messages dataMessage={props.state.messagesPage}/>}/>
+                            <Route path="/profile" element={<Profile dataPosts={props.store.state.profilePage} addPost={props.store.addPost.bind(props.store)} newText={props.store.state.profilePage.newText} changeNewTextValue={props.store.changeNewTextValue.bind(props.store)}/>}/>
+                            <Route path="/messages" element={<Messages dataMessage={props.store.state.messagesPage}/>}/>
                             <Route path="/news" element={<News/>}/>
                             <Route path="/music" element={<Music/>}/>
                             <Route path="/settings" element={<Settings/>}/>
