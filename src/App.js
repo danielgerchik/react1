@@ -22,7 +22,7 @@ const App = props => {
 
                     <main className="content">
                         <Routes>
-                            <Route path="/profile" element={<Profile dataPosts={props.state.profilePage} addPost={props.addPost}/>}/>
+                            <Route path="/profile" element={<Profile dataPosts={props.state.profilePage} addPost={props.addPost} newText={props.state.profilePage.newText} changeNewTextValue={props.changeNewTextValue}/>}/>
                             <Route path="/messages" element={<Messages dataMessage={props.state.messagesPage}/>}/>
                             <Route path="/news" element={<News/>}/>
                             <Route path="/music" element={<Music/>}/>

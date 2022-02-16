@@ -1,4 +1,11 @@
-import rerender from "../rerender";
+// import rerender from "../rerender";
+
+let rerender = ()=> {
+    console.log('1')
+}
+export const importRerenderFunction = rerenderFunction => {
+    rerender = rerenderFunction
+}
 
 const state = {
     profilePage: {
@@ -7,6 +14,7 @@ const state = {
             {number: "Post2"},
             {number: "Post3"},
         ],
+        newText: '',
     },
     messagesPage: {
         interlocutorsArray:  [
@@ -26,8 +34,16 @@ const state = {
 
 export default state;
 
-export const addPost = postMessage => {
-    const newMessage = {number: postMessage};
+export const addPost = () => {
+    const newMessage = {number: state.profilePage.newText};
     state.profilePage.postsArray.push(newMessage)
-    rerender(state, addPost)
+    state.profilePage.newText = ''
+    rerender(state, addPost, changeNewTextValue)
 }
+
+export const changeNewTextValue = NewTextValue => {
+    state.profilePage.newText = NewTextValue
+    rerender(state, addPost, changeNewTextValue)
+}
+
+window.state = state

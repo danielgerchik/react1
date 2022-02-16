@@ -6,8 +6,9 @@ const Profile = props => {
     return (
         <div className={s.profile}>
             <Info/>
-            <Posts dataPosts={props.dataPosts.postsArray} addPost={props.addPost}/>
+            <Posts dataPosts={props.dataPosts.postsArray} addPost={props.addPost} changeNewTextValue={props.changeNewTextValue} newText={props.newText}/>
         </div>
     )
 }
+
 export default Profile
