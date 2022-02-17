@@ -1,7 +1,7 @@
-const ADDPOST = 'ADD-POST';
-const CHANGETEXTVALUE = 'CHANGE-TEXT-VALUE';
-const ADDMESSAGE = 'ADD-MESSAGE'
-const CHANGEMESSAGETEXT = 'CHANGE-MESSAGE-TEXT';
+import profilePageReducer from "./profilePage-reducer";
+import messagePageReducer from "./messagePage-reducer";
+
+
 const store = {
     _rerender() {
         console.log('1')
@@ -43,32 +43,15 @@ const store = {
 
 
     dispatch(action) {
-        if (action.type === ADDPOST) {
-            const newPost = {number: this._state.profilePage.newText};
-            this._state.profilePage.postsArray.push(newPost)
-            this._state.profilePage.newText = ''
-            this._rerender(this)
-        } else if (action.type === CHANGETEXTVALUE) {
-            this._state.profilePage.newText = action.newText
-            this._rerender(this)
-        } else if (action.type === ADDMESSAGE) {
-            const newMessage = this._state.messagesPage.newMessageText
-            this._state.messagesPage.newMessageText = ''
-            this._state.messagesPage.dialogsArray.push({dialogItem: newMessage})
-            this._rerender(this)
-        } else if (action.type === CHANGEMESSAGETEXT) {
-            this._state.messagesPage.newMessageText = action.newText
-            this._rerender(this)
-        }
-
+        this._state.profilePage = profilePageReducer(this._state.profilePage,action)
+        this._state.messagesPage = messagePageReducer(this._state.messagesPage,action)
+        this._rerender(this)
     }
 }
 
 export default store;
 
-export const createActionAddPost = () => ({type: ADDPOST})
-export const createActionChangeTextValue = text => ({type: CHANGETEXTVALUE, newText: text})
 
-export const createActionaddMessage = () => ({type: ADDMESSAGE})
-export const createActionchangeMessageText = text => ({type: CHANGEMESSAGETEXT, newText: text})
+
+
 

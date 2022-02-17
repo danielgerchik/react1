@@ -1,7 +1,7 @@
 import s from "./Posts.module.css";
 import Post from "./Post/Post";
 import React from "react";
-import {createActionAddPost, createActionChangeTextValue} from "../../../redux/state";
+import {createActionAddPost, createActionChangeTextValue} from "../../../redux/profilePage-reducer";
 
 const Posts = props => {
     const textareaOfNewPost = React.useRef()
