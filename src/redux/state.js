@@ -1,12 +1,9 @@
 const store = {
-    rerender () {
+    _rerender () {
         console.log('1')
     },
-     importRerenderFunction (rerenderFunction) {
-        this.rerender = rerenderFunction
-    },
 
-    state : {
+    _state : {
         profilePage: {
             postsArray: [
                 {number: "Post1"},
@@ -31,20 +28,26 @@ const store = {
         }
     },
 
-
-
-
-     addPost() {
-        const newMessage = {number: this.state.profilePage.newText};
-         this.state.profilePage.postsArray.push(newMessage)
-         this.state.profilePage.newText = ''
-        this.rerender(this)
+    importRerenderFunction (rerenderFunction) {
+        this._rerender = rerenderFunction
     },
 
-     changeNewTextValue(NewTextValue) {
-         this.state.profilePage.newText = NewTextValue
-         this.rerender(this)
+    getState() {
+        return this._state;
     },
+    
+
+    dispatch(action) {
+        if(action.type === 'ADD-POST') {
+            const newMessage = {number: this._state.profilePage.newText};
+            this._state.profilePage.postsArray.push(newMessage)
+            this._state.profilePage.newText = ''
+            this._rerender(this)
+        } else if(action.type === 'CHANGE-TEXT-VALUE') {
+            this._state.profilePage.newText = action.newText
+            this._rerender(this)
+        }
+    }
 }
 
 export default store;

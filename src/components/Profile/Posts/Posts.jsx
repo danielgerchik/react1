@@ -6,11 +6,12 @@ const Posts = props => {
     const textareaOfNewPost = React.useRef()
 
     const addNewPost = ()=> {
-        // const valueOfNewPost = textareaOfNewPost.current.value
-        props.addPost()
+        // props.addPost()
+        props.dispatch({type: 'ADD-POST'})
     }
     const changeText = () => {
-        props.changeNewTextValue(textareaOfNewPost.current.value)
+        // props.changeNewTextValue(textareaOfNewPost.current.value)
+        props.dispatch({type: 'CHANGE-TEXT-VALUE', newText: textareaOfNewPost.current.value})
     }
     const postItems = props.dataPosts.map( el => <Post postNumber={el.number}/>)
     return (

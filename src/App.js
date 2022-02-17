@@ -22,8 +22,8 @@ const App = props => {
 
                     <main className="content">
                         <Routes>
-                            <Route path="/profile" element={<Profile dataPosts={props.store.state.profilePage} addPost={props.store.addPost.bind(props.store)} newText={props.store.state.profilePage.newText} changeNewTextValue={props.store.changeNewTextValue.bind(props.store)}/>}/>
-                            <Route path="/messages" element={<Messages dataMessage={props.store.state.messagesPage}/>}/>
+                            <Route path="/profile" element={<Profile dataPosts={props.store.getState().profilePage} dispatch={props.store.dispatch.bind(props.store)}/>}/>
+                            <Route path="/messages" element={<Messages dataMessage={props.store.getState().messagesPage}/>}/>
                             <Route path="/news" element={<News/>}/>
                             <Route path="/music" element={<Music/>}/>
                             <Route path="/settings" element={<Settings/>}/>
