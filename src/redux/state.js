@@ -1,3 +1,5 @@
+const ADDPOST = 'ADD-POST';
+const CHANGETEXTVALUE = 'CHANGE-TEXT-VALUE';
 const store = {
     _rerender () {
         console.log('1')
@@ -35,21 +37,25 @@ const store = {
     getState() {
         return this._state;
     },
-    
+
 
     dispatch(action) {
-        if(action.type === 'ADD-POST') {
+        if(action.type === ADDPOST) {
             const newMessage = {number: this._state.profilePage.newText};
             this._state.profilePage.postsArray.push(newMessage)
             this._state.profilePage.newText = ''
             this._rerender(this)
-        } else if(action.type === 'CHANGE-TEXT-VALUE') {
-            this._state.profilePage.newText = action.newText
-            this._rerender(this)
+        } else {
+            if(action.type === CHANGETEXTVALUE) {
+                        this._state.profilePage.newText = action.newText
+                        this._rerender(this)
+                    }
         }
     }
 }
 
 export default store;
 
-window.store = store;
+export const createActionAddPost = ()=>  ({type: ADDPOST})
+export const createActionChangeTextValue = text =>  ({type: CHANGETEXTVALUE, newText: text})
+

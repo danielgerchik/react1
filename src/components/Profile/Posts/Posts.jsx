@@ -1,17 +1,17 @@
 import s from "./Posts.module.css";
 import Post from "./Post/Post";
 import React from "react";
+import {createActionAddPost, createActionChangeTextValue} from "../../../redux/state";
 
 const Posts = props => {
     const textareaOfNewPost = React.useRef()
 
     const addNewPost = ()=> {
-        // props.addPost()
-        props.dispatch({type: 'ADD-POST'})
+        props.dispatch(createActionAddPost())
     }
     const changeText = () => {
-        // props.changeNewTextValue(textareaOfNewPost.current.value)
-        props.dispatch({type: 'CHANGE-TEXT-VALUE', newText: textareaOfNewPost.current.value})
+        const text = textareaOfNewPost.current.value
+        props.dispatch(createActionChangeTextValue(text))
     }
     const postItems = props.dataPosts.map( el => <Post postNumber={el.number}/>)
     return (
