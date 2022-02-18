@@ -1,9 +1,9 @@
-import profilePageReducer from "./profilePage-reducer";
-import messagePageReducer from "./messagePage-reducer";
+import profilePageReducer from "./reducers/profilePage-reducer";
+import messagePageReducer from "./reducers/messagePage-reducer";
 
 
 const store = {
-    _rerender() {
+    _subscriber() {
         console.log('1')
     },
 
@@ -33,8 +33,8 @@ const store = {
         }
     },
 
-    importRerenderFunction(rerenderFunction) {
-        this._rerender = rerenderFunction
+    subscribe(observer) {
+        this._subscriber = observer
     },
 
     getState() {
@@ -45,7 +45,7 @@ const store = {
     dispatch(action) {
         this._state.profilePage = profilePageReducer(this._state.profilePage,action)
         this._state.messagesPage = messagePageReducer(this._state.messagesPage,action)
-        this._rerender(this)
+        this._subscriber(this)
     }
 }
 

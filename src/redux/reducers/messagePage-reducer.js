@@ -1,8 +1,23 @@
 const ADDMESSAGE = 'ADD-MESSAGE'
 const CHANGEMESSAGETEXT = 'CHANGE-MESSAGE-TEXT';
 
+const initialState = {
+    interlocutorsArray: [
+        {path: 'vanya', name: 'Ваня'},
+        {path: 'masha', name: 'Маша'},
+        {path: 'tanya', name: 'Таня'},
+        {path: 'sasha', name: 'Саша'},
+    ],
+    dialogsArray: [
+        {dialogItem: 'Привет'},
+        {dialogItem: 'Как дела ?'},
+        {dialogItem: 'Че делаешь ?'},
+        {dialogItem: 'Всё ок'},
+    ],
+    newMessageText: '',
+}
 
-const messagePageReducer = (state, action) => {
+const messagePageReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADDMESSAGE:
             const newMessage = state.newMessageText

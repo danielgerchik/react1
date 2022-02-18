@@ -1,7 +1,7 @@
 import s from './Messages.module.css';
 import Interlocutor from "./Interlocutor/Interlocutor";
 import Dialog from "./Dialog/Dialog";
-import {createActionaddMessage, createActionchangeMessageText} from "../../redux/messagePage-reducer";
+import {createActionaddMessage, createActionchangeMessageText} from "../../redux/reducers/messagePage-reducer";
 
 
 const Messages = props => {

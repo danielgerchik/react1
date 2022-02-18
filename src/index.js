@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import store from './redux/state';
+import store from './redux/redux-store';
 
 
 const rerender = (store) => {
@@ -15,7 +15,9 @@ const rerender = (store) => {
         document.getElementById('root')
     );
 }
-store.importRerenderFunction(rerender)
+store.subscribe(()=> {
+    rerender(store)
+})
 rerender(store)
 
 // If you want to start measuring performance in your app, pass a function

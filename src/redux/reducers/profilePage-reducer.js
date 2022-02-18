@@ -1,8 +1,16 @@
 const ADDPOST = 'ADD-POST';
 const CHANGETEXTVALUE = 'CHANGE-TEXT-VALUE';
 
+const initialState = {
+    postsArray: [
+        {number: "Post1"},
+        {number: "Post2"},
+        {number: "Post3"},
+    ],
+    newText: '',
+}
 
-const profilePageReducer = (state, action) => {
+const profilePageReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADDPOST:
             const newPost = {number: state.newText};
