@@ -4,21 +4,21 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './redux/redux-store';
+import contextStore from "./ContexStore";
 
 
-const rerender = (store) => {
+const rerender = () => {
     ReactDOM.render(
         <React.StrictMode>
-            {/*state={state} addPost={addPost} changeNewTextValue={changeNewTextValue}*/}
-            <App store={store} />
+            <contextStore.Provider value={store}>
+            <App/>
+            </contextStore.Provider>
         </React.StrictMode>,
         document.getElementById('root')
     );
 }
-store.subscribe(()=> {
-    rerender(store)
-})
-rerender(store)
+store.subscribe(rerender)
+rerender()
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

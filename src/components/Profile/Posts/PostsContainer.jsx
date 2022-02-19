@@ -1,20 +1,24 @@
 import {createActionAddPost, createActionChangeTextValue} from "../../../redux/reducers/profilePage-reducer";
 import Posts from "./Posts";
 import React from "react";
+import contextStore from "../../../ContexStore";
 
 const PostsContainer = props => {
-    const newText = props.store.getState().profilePage.newText
-    const dataPosts = props.store.getState().profilePage.postsArray
+    return <contextStore.Consumer>
+        { (store) =>  {
+    const newText = store.getState().profilePage.newText
+    const dataPosts = store.getState().profilePage.postsArray
     const addNewPost = ()=> {
-        props.store.dispatch(createActionAddPost())
+            store.dispatch(createActionAddPost())
     }
     const changeText = text => {
-        props.store.dispatch(createActionChangeTextValue(text))
+            store.dispatch(createActionChangeTextValue(text))
     }
 
     return (
        <Posts newText={newText} dataPosts={dataPosts} changeText={changeText} addNewPost={addNewPost}/>
     )
-
+        }}
+    </contextStore.Consumer>
 }
 export default PostsContainer;
