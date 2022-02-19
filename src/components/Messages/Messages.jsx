@@ -1,18 +1,17 @@
 import s from './Messages.module.css';
 import Interlocutor from "./Interlocutor/Interlocutor";
 import Dialog from "./Dialog/Dialog";
-import {createActionaddMessage, createActionchangeMessageText} from "../../redux/reducers/messagePage-reducer";
 
 
 const Messages = props => {
-    const interlocutors = props.dataMessage.messagesPage.interlocutorsArray.map(el => <Interlocutor path={el.path} name={el.name}/>)
-    const dialogs = props.dataMessage.messagesPage.dialogsArray.map(el => <Dialog dialogItem = {el.dialogItem}/>)
+    const interlocutors = props.interlocutorsArray.map(el => <Interlocutor path={el.path} name={el.name}/>)
+    const dialogs = props.dialogsArray.map(el => <Dialog dialogItem = {el.dialogItem}/>)
 
-    const sendMassage = ()=> {
-        props.dispatch(createActionaddMessage())
+    const onSendMassage = ()=> {
+        props.sendMessage()
     }
-    const changeText = e => {
-        props.dispatch(createActionchangeMessageText(e.target.value))
+    const onChangeText = e => {
+        props.changeText(e.target.value)
     }
     return (
         <div>
@@ -25,10 +24,10 @@ const Messages = props => {
                 </div>
             </div>
             <div>
-                <div><textarea onChange={changeText} value={props.dataMessage.messagesPage.newMessageText} placeholder='type message...'></textarea></div>
+                <div><textarea onChange={onChangeText} value={props.newMessageText} placeholder='type message...'></textarea></div>
             </div>
             <div>
-                <button onClick={sendMassage}>Отправить</button>
+                <button onClick={onSendMassage}>Отправить</button>
             </div>
         </div>
     )
