@@ -30,7 +30,7 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        sendMassage: ()=> {
+        sendMessage: ()=> {
             dispatch(createActionaddMessage())
         },
         changeText: value => {
