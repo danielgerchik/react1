@@ -12,19 +12,19 @@ const initialState = {
 
 const profilePageReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADDPOST: {
-            const stateCopy = {...state}
-            stateCopy.postsArray = [...state.postsArray]
-            const newPost = {number: stateCopy.newText};
-            stateCopy.postsArray.push(newPost)
-            stateCopy.newText = ''
-            return stateCopy
-        }
-        case CHANGETEXTVALUE: {
-            const stateCopy = {...state}
-            stateCopy.newText = action.newText
-            return stateCopy
-        }
+        case ADDPOST:
+            return {
+                ...state,
+                postsArray: [...state.postsArray, {number: state.newText}],
+                newText: ''
+            }
+
+        case CHANGETEXTVALUE:
+            return {
+                ...state,
+                newText: action.newText
+            }
+
         default:
             return state
     }
