@@ -30,7 +30,7 @@ const usersPageReducer = (state = stateInit, action) => {
                     if(e.id === action.userID) {
                        return {
                            ...e,
-                           follow: !e.follow,
+                           followed: !e.followed,
                        }
                     }
                     return e
