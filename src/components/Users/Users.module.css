@@ -1,0 +1,9 @@
+.pagination {
+    color: white;
+    margin-right: 10px;
+    font-size: 18px;
+}
+.pagination.active {
+    color: #990099;
+    font-weight: bold;
+}
