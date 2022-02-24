@@ -4,14 +4,12 @@ import './App.css';
 import Header from "./components/Header/Header";
 import Menu from "./components/Menu/Menu";
 import Profile from "./components/Profile/Profile";
-import Messages from "./components/Messages/Messages";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {Routes, Route,  BrowserRouter as Router} from "react-router-dom";
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import MessagesContainer from "./components/Messages/MessagesContainer";
 import UsersContainer from "./components/Users/UsersContainer";
-
 
 
 const App = props => {
