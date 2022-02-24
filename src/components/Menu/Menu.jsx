@@ -7,6 +7,7 @@ const Menu = () => {
             <ul>
                 <MenuItem path="/profile" name="Profile"/>
                 <MenuItem path="/news" name="News"/>
+                <MenuItem path="/users" name="Users"/>
                 <MenuItem path="/messages" name="Message"/>
                 <MenuItem path="/music" name="Music"/>
                 <MenuItem path="/settings" name="Settings"/>
