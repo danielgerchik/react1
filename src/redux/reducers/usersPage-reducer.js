@@ -2,6 +2,7 @@ const TOGGLEFOLLOW = 'TOGGLE-FOLLOW'
 const SETUSERS = 'SET-USERS'
 const SETTOTALCOUNT = 'SET-TOTAL-COUNT'
 const SETCURRENTPAGE = 'SET-CURRENT-PAGE'
+const CHANGEFETCHING = 'CHANGE-FETCHING'
 
 const users = [
     {id: 1, follow: true, name: 'Vasiliy', age: 27, citi: 'Novosibirsk',
@@ -15,7 +16,8 @@ const stateInit = {
     users: [],
     usersCount: 5,
     usersTotalCount: 0,
-    usersPage: 1
+    usersPage: 1,
+    isFetching: false
 
 }
 
@@ -50,6 +52,11 @@ const usersPageReducer = (state = stateInit, action) => {
                 ...state,
                 usersPage:  action.currentPage
             }
+        case CHANGEFETCHING:
+            return {
+                ...state,
+                isFetching: action.fetchingValue
+            }
 
         default:
             return state
@@ -61,5 +68,6 @@ export const toggleFollowAC = userID => ({type: TOGGLEFOLLOW, userID: userID})
 export const setUsersAC = users => ({type: SETUSERS, users: users})
 export const setTotalCountAC = totalCount => ({type: SETTOTALCOUNT, totalCount})
 export const setCurrentPageAC = currentPage => ({type: SETCURRENTPAGE, currentPage})
+export const changeFetchingAC = fetchingValue => ({type: CHANGEFETCHING, fetchingValue})
 
 export default usersPageReducer
