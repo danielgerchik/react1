@@ -31,8 +31,8 @@ const profilePageReducer = (state = initialState, action) => {
 
 }
 
-export const createActionAddPost = () => ({type: ADDPOST})
-export const createActionChangeTextValue = text => ({type: CHANGETEXTVALUE, newText: text})
+export const AddPost = () => ({type: ADDPOST})
+export const ChangeTextValue = text => ({type: CHANGETEXTVALUE, newText: text})
 
 export default profilePageReducer
 

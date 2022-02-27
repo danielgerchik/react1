@@ -8,10 +8,10 @@ const Messages = props => {
     const dialogs = props.dialogsArray.map(el => <Dialog dialogItem = {el.dialogItem}/>)
 
     const onSendMassage = ()=> {
-        props.sendMessage()
+        props.addMessage()
     }
     const onChangeText = e => {
-        props.changeText(e.target.value)
+        props.changeMessageText(e.target.value)
     }
     return (
         <div>

@@ -4,10 +4,10 @@ const Posts = props => {
 
 
     const onClickAddNewPost = ()=> {
-        props.addNewPost()
+        props.AddPost()
     }
     const onChangeText = e => {
-        props.changeText(e.target.value)
+        props.ChangeTextValue(e.target.value)
     }
     const postItems = props.dataPosts.map( el => <Post postNumber={el.number}/>)
     return (

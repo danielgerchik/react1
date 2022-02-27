@@ -1,4 +1,4 @@
-import {createActionaddMessage, createActionchangeMessageText} from "../../redux/reducers/messagePage-reducer";
+import {addMessage, changeMessageText} from "../../redux/reducers/messagePage-reducer";
 import Messages from "./Messages";
 import {connect} from "react-redux";
 
@@ -9,10 +9,10 @@ import {connect} from "react-redux";
 //             const dialogsArray = store.getState().messagesPage.dialogsArray
 //             const newMessageText = store.getState().messagesPage.newMessageText
 //             const sendMassage = ()=> {
-//             store.dispatch(createActionaddMessage())
+//             store.dispatch(addMessage())
 //         }
 //             const changeText = value => {
-//             store.dispatch(createActionchangeMessageText(value))
+//             store.dispatch(changeMessageText(value))
 //         }
 //             return <Messages interlocutorsArray={interlocutorsArray} dialogsArray={dialogsArray} sendMessage={sendMassage}
 //             changeText={changeText} newMessageText={newMessageText}/>
@@ -28,18 +28,18 @@ const mapStateToProps = state => {
         newMessageText: state.messagesPage.newMessageText
     }
 }
-const mapDispatchToProps = dispatch => {
-    return {
-        sendMessage: ()=> {
-            dispatch(createActionaddMessage())
-        },
-        changeText: value => {
-            dispatch(createActionchangeMessageText(value))
-        }
-    }
-}
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         sendMessage: ()=> {
+//             dispatch(addMessage())
+//         },
+//         changeText: value => {
+//             dispatch(changeMessageText(value))
+//         }
+//     }
+// }
 
-const MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(Messages);
+const MessagesContainer = connect(mapStateToProps, {addMessage, changeMessageText})(Messages);
 
 
 

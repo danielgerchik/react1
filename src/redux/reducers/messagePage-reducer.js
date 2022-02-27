@@ -37,7 +37,7 @@ const messagePageReducer = (state = initialState, action) => {
     }
 }
 
-export const createActionaddMessage = () => ({type: ADDMESSAGE})
-export const createActionchangeMessageText = text => ({type: CHANGEMESSAGETEXT, newText: text})
+export const addMessage = () => ({type: ADDMESSAGE})
+export const changeMessageText = text => ({type: CHANGEMESSAGETEXT, newText: text})
 
 export default messagePageReducer
