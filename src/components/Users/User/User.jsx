@@ -15,20 +15,24 @@ const User = props => {
             <Link to={'/profile/' + props.id}><span className={style.img}><img src={props.photo}/></span></Link>
 
             <div>
-                <button onClick={() => {
+                <button disabled={props.disabledButtons.some(el => el === props.id)} onClick={() => {
                     if(props.isfollowing === true) {
+                        props.toggleDisabledButtons(true, props.id)
                         usersAPI.deleteFollow(props.id)
                             .then(data => {
                             if(data.resultCode === 0) {
                                 props.toggleFollow(props.id)
                             }
+                                props.toggleDisabledButtons(false, props.id)
                         })
                     } else {
+                        props.toggleDisabledButtons(true, props.id)
                        usersAPI.createFollow(props.id)
                         .then(data => {
                             if(data.resultCode === 0) {
                                 props.toggleFollow(props.id)
                             }
+                            props.toggleDisabledButtons(false, props.id)
                         })
                     }
 
@@ -37,7 +41,6 @@ const User = props => {
             </div>
         </div>
     )
-    debugger
 }
 
 export default User

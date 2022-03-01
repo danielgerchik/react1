@@ -3,6 +3,7 @@ const SETUSERS = 'SET-USERS'
 const SETTOTALCOUNT = 'SET-TOTAL-COUNT'
 const SETCURRENTPAGE = 'SET-CURRENT-PAGE'
 const CHANGEFETCHING = 'CHANGE-FETCHING'
+const TOGGLEDISABLEDBATTONS = 'TOGGLE-DISABLED-BATTONS'
 
 const users = [
     {id: 1, follow: true, name: 'Vasiliy', age: 27, citi: 'Novosibirsk',
@@ -17,8 +18,8 @@ const stateInit = {
     usersCount: 5,
     usersTotalCount: 0,
     usersPage: 1,
-    isFetching: false
-
+    isFetching: false,
+    disabledButtons: []
 }
 
 const usersPageReducer = (state = stateInit, action) => {
@@ -57,6 +58,13 @@ const usersPageReducer = (state = stateInit, action) => {
                 ...state,
                 isFetching: action.fetchingValue
             }
+        case TOGGLEDISABLEDBATTONS:
+            return {
+                ...state,
+                disabledButtons: action.disableStatus
+                    ? [...state.disabledButtons, action.newButt]
+                    : state.disabledButtons.filter(el => el != action.newButt)
+            }
 
         default:
             return state
@@ -69,5 +77,6 @@ export const setUsers = users => ({type: SETUSERS, users: users})
 export const setTotalCount = totalCount => ({type: SETTOTALCOUNT, totalCount})
 export const setCurrentPage = currentPage => ({type: SETCURRENTPAGE, currentPage})
 export const changeFetching = fetchingValue => ({type: CHANGEFETCHING, fetchingValue})
+export const toggleDisabledButtons = (disableStatus, newButt) => ({type: TOGGLEDISABLEDBATTONS, disableStatus, newButt})
 
 export default usersPageReducer
