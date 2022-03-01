@@ -1,19 +1,21 @@
 import s from "./Info.module.css";
+import Preloader from "../../common/Preloader/Preloader";
+import profileIMG from "../../../img/25.jpg"
 
 
-const Info = () => {
+const Info = (props) => {
+    debugger
+if(!props.userProfile) {
+    return <Preloader/>
+}
     return (
         <div className={s.about}>
             <div className={s.img}>
-                <img src="https://schoolsw3.com/howto/img_avatar.png" alt=""/>
+                <img src={props.userProfile.photos.large || 'https://klike.net/uploads/posts/2019-03/1551511784_4.jpg'} alt=""/>
             </div>
             <div className={s.secription}>
-                <div className={s.name}>Иван Иванов</div>
-                <div className={s.aboutMe}>Товарищи! новая модель организационной деятельности в значительной
-                    степени обуславливает создание существенных финансовых и административных условий. Товарищи!
-                    реализация намеченных плановых заданий требуют от нас анализа новых предложений. Разнообразный и
-                    богатый опыт новая модель организационной деятельности требуют определения и уточнения
-                    дальнейших направлений развития.
+                <div className={s.name}>{props.userProfile.fullName}</div>
+                <div className={s.aboutMe}>{props.userProfile.aboutMe}
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
 const ADDPOST = 'ADD-POST';
 const CHANGETEXTVALUE = 'CHANGE-TEXT-VALUE';
+const SETUSERPROFILE = 'SET-USER-PROFILE';
 
 const initialState = {
     postsArray: [
@@ -8,6 +9,7 @@ const initialState = {
         {number: "Post3"},
     ],
     newText: '',
+    userProfile: null
 }
 
 const profilePageReducer = (state = initialState, action) => {
@@ -25,6 +27,12 @@ const profilePageReducer = (state = initialState, action) => {
                 newText: action.newText
             }
 
+        case SETUSERPROFILE:
+            return {
+                ...state,
+                userProfile: action.userData
+            }
+
         default:
             return state
     }
@@ -33,6 +41,7 @@ const profilePageReducer = (state = initialState, action) => {
 
 export const AddPost = () => ({type: ADDPOST})
 export const ChangeTextValue = text => ({type: CHANGETEXTVALUE, newText: text})
+export const setUserProfile = userData => ({type: SETUSERPROFILE, userData})
 
 export default profilePageReducer
 

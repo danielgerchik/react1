@@ -3,38 +3,45 @@ import './reset.css';
 import './App.css';
 import Header from "./components/Header/Header";
 import Menu from "./components/Menu/Menu";
-import Profile from "./components/Profile/Profile";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes, Switch} from "react-router-dom";
 import MessagesContainer from "./components/Messages/MessagesContainer";
 import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 
 const App = props => {
     return (
-        <Router>
+        <BrowserRouter>
             <div className="wrapper">
                 <Header/>
                 <div className="main-row">
                     <Menu/>
 
                     <main className="content">
-                        <Routes>
-                            <Route path="/profile" element={<Profile/>}/>
-                            <Route path="/messages" element={<MessagesContainer/>}/>
-                            <Route path="/users" element={<UsersContainer/>}/>
-                            <Route path="/news" element={<News/>}/>
-                            <Route path="/music" element={<Music/>}/>
-                            <Route path="/settings" element={<Settings/>}/>
-                        </Routes>
+                        <Switch>
+                            {/*<Route path="/profile/*" element={<ProfileContainer/>}/>*/}
+                            {/*<Route path="/profile" component={ProfileContainer}/>*/}
+                            <Route path="/profile/:userID?" component={ProfileContainer}/>
+                            {/*<Route path="/messages" element={<MessagesContainer/>}/>*/}
+                            <Route path="/messages" component={MessagesContainer}/>
+                            {/*<Route path="/users" element={<UsersContainer/>}/>*/}
+                            <Route path="/users" component={UsersContainer}/>
+                            {/*<Route path="/news" element={<News/>}/>*/}
+                            <Route path="/news" component={News}/>
+                            {/*<Route path="/music" element={<Music/>}/>*/}
+                            <Route path="/music" component={Music}/>
+                            {/*<Route path="/settings" element={<Settings/>}/>*/}
+                            <Route path="/settings" component={Settings}/>
+                        </Switch>
                     </main>
 
 
                 </div>
             </div>
-        </Router>
+        </BrowserRouter>
     );
 }
 

@@ -1,13 +1,15 @@
 import style from './User.module.css'
+import {Link} from "react-router-dom";
 
 
 const User = props => {
     return (
         <div className={style.user}>
-            <div>{props.name}</div>
-            <div>{props.age}</div>
-            <div>{props.citi}</div>
-            <div className={style.img}><img src={props.photo}/></div>
+            <Link to={'/profile/' + props.id}>
+                <span>{props.name}</span>
+            </Link>
+            <Link to={'/profile/' + props.id}><span className={style.img}><img src={props.photo}/></span></Link>
+            
             <div> <button onClick={() => {props.toggleFollow(props.id)}}>{props.followStatus}</button></div>
         </div>
     )

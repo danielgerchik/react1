@@ -15,4 +15,4 @@ const store = createStore(reducers)
 
 export default store
 
-window.store = store
+window.state = store.getState()
