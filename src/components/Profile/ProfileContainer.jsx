@@ -8,7 +8,6 @@ import WithRouter from "react-router-dom/es/withRouter";
 
 
 class ProfileContainer extends React.Component {
-
     componentDidMount() {
        const userID = this.props.match.params.userID || 2
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userID}`).then(response => {

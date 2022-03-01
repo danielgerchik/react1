@@ -4,7 +4,6 @@ import profileIMG from "../../../img/25.jpg"
 
 
 const Info = (props) => {
-    debugger
 if(!props.userProfile) {
     return <Preloader/>
 }

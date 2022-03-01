@@ -10,13 +10,14 @@ import {BrowserRouter, Route, Routes, Switch} from "react-router-dom";
 import MessagesContainer from "./components/Messages/MessagesContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 
 const App = props => {
     return (
         <BrowserRouter>
             <div className="wrapper">
-                <Header/>
+                <HeaderContainer/>
                 <div className="main-row">
                     <Menu/>
 
