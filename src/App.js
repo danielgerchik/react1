@@ -11,6 +11,7 @@ import MessagesContainer from "./components/Messages/MessagesContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import login from "./components/Login/Login";
 
 
 const App = props => {
@@ -23,6 +24,7 @@ const App = props => {
 
                     <main className="content">
                         <Switch>
+                            <Route path="/login" component={login}/>
                             <Route path="/profile/:userID?" component={ProfileContainer}/>
                             <Route path="/messages" component={MessagesContainer}/>
                             <Route path="/users" component={UsersContainer}/>

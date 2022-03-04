@@ -25,7 +25,8 @@ const mapStateToProps = state => {
     return {
         interlocutorsArray: state.messagesPage.interlocutorsArray,
         dialogsArray: state.messagesPage.dialogsArray,
-        newMessageText: state.messagesPage.newMessageText
+        newMessageText: state.messagesPage.newMessageText,
+        authData: state.auth.authData
     }
 }
 // const mapDispatchToProps = dispatch => {
