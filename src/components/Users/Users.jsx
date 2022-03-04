@@ -2,6 +2,7 @@ import style from "./Users.module.css";
 import User from "./User/User";
 import userPhoto from "../../img/user.png";
 import React from "react";
+import {addFollow, deleteFollow} from "../../redux/reducers/usersPage-reducer";
 
 const Users = (props) => {
 
@@ -24,7 +25,8 @@ const Users = (props) => {
                                                   followStatus={e.followed === true ? 'unfollow' : 'follow'}
                                                   toggleFollow={props.toggleFollow} id={e.id}
                                                   disabledButtons={props.disabledButtons}
-                                                  toggleDisabledButtons={props.toggleDisabledButtons}/>)
+                                                  toggleDisabledButtons={props.toggleDisabledButtons}
+                                                  deleteFollow={props.deleteFollow} addFollow={props.addFollow}/>)
     return (
         <div>
             {pagination}

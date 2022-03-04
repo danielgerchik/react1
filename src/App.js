@@ -23,18 +23,11 @@ const App = props => {
 
                     <main className="content">
                         <Switch>
-                            {/*<Route path="/profile/*" element={<ProfileContainer/>}/>*/}
-                            {/*<Route path="/profile" component={ProfileContainer}/>*/}
                             <Route path="/profile/:userID?" component={ProfileContainer}/>
-                            {/*<Route path="/messages" element={<MessagesContainer/>}/>*/}
                             <Route path="/messages" component={MessagesContainer}/>
-                            {/*<Route path="/users" element={<UsersContainer/>}/>*/}
                             <Route path="/users" component={UsersContainer}/>
-                            {/*<Route path="/news" element={<News/>}/>*/}
                             <Route path="/news" component={News}/>
-                            {/*<Route path="/music" element={<Music/>}/>*/}
                             <Route path="/music" component={Music}/>
-                            {/*<Route path="/settings" element={<Settings/>}/>*/}
                             <Route path="/settings" component={Settings}/>
                         </Switch>
                     </main>

@@ -1,3 +1,5 @@
+import {usersAPI} from "../../API/api";
+
 const TOGGLEFOLLOW = 'TOGGLE-FOLLOW'
 const SETUSERS = 'SET-USERS'
 const SETTOTALCOUNT = 'SET-TOTAL-COUNT'
@@ -6,12 +8,18 @@ const CHANGEFETCHING = 'CHANGE-FETCHING'
 const TOGGLEDISABLEDBATTONS = 'TOGGLE-DISABLED-BATTONS'
 
 const users = [
-    {id: 1, follow: true, name: 'Vasiliy', age: 27, citi: 'Novosibirsk',
-        photoUrl: 'https://wac-cdn.atlassian.com/ru/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=225' },
-    {id: 2, follow: false, name: 'Dmitry', age: 23, citi: 'Kazan',
-        photoUrl: 'https://wac-cdn.atlassian.com/ru/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=225' },
-    {id: 3, follow: false, name: 'Aleksey', age: 31, citi: 'Samara',
-        photoUrl: 'https://wac-cdn.atlassian.com/ru/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=225' },
+    {
+        id: 1, follow: true, name: 'Vasiliy', age: 27, citi: 'Novosibirsk',
+        photoUrl: 'https://wac-cdn.atlassian.com/ru/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=225'
+    },
+    {
+        id: 2, follow: false, name: 'Dmitry', age: 23, citi: 'Kazan',
+        photoUrl: 'https://wac-cdn.atlassian.com/ru/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=225'
+    },
+    {
+        id: 3, follow: false, name: 'Aleksey', age: 31, citi: 'Samara',
+        photoUrl: 'https://wac-cdn.atlassian.com/ru/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=225'
+    },
 ]
 const stateInit = {
     users: [],
@@ -29,11 +37,11 @@ const usersPageReducer = (state = stateInit, action) => {
             return {
                 ...state,
                 users: state.users.map(e => {
-                    if(e.id === action.userID) {
-                       return {
-                           ...e,
-                           followed: !e.followed,
-                       }
+                    if (e.id === action.userID) {
+                        return {
+                            ...e,
+                            followed: !e.followed,
+                        }
                     }
                     return e
                 })
@@ -41,17 +49,17 @@ const usersPageReducer = (state = stateInit, action) => {
         case SETUSERS:
             return {
                 ...state,
-                users:  [...action.users]
+                users: [...action.users]
             }
         case SETTOTALCOUNT:
             return {
                 ...state,
-                usersTotalCount:  action.totalCount
+                usersTotalCount: action.totalCount
             }
         case SETCURRENTPAGE:
             return {
                 ...state,
-                usersPage:  action.currentPage
+                usersPage: action.currentPage
             }
         case CHANGEFETCHING:
             return {
@@ -78,5 +86,43 @@ export const setTotalCount = totalCount => ({type: SETTOTALCOUNT, totalCount})
 export const setCurrentPage = currentPage => ({type: SETCURRENTPAGE, currentPage})
 export const changeFetching = fetchingValue => ({type: CHANGEFETCHING, fetchingValue})
 export const toggleDisabledButtons = (disableStatus, newButt) => ({type: TOGGLEDISABLEDBATTONS, disableStatus, newButt})
+
+export const getUsers = (page, count) => {
+    return dispatch => {
+       dispatch(setCurrentPage(page))
+        dispatch(changeFetching(true))
+        usersAPI.getUsers(page, count)
+            .then(data => {
+                dispatch(setUsers(data.items))
+                dispatch(setTotalCount(data.totalCount))
+                dispatch(changeFetching(false))
+            });
+    }
+}
+
+export const deleteFollow = (ID) => {
+    return dispatch => {
+        dispatch(toggleDisabledButtons(true, ID))
+        usersAPI.deleteFollow(ID)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(toggleFollow(ID))
+                }
+                dispatch(toggleDisabledButtons(false,ID))
+            })
+    }
+}
+export const addFollow = (ID) => {
+    return dispatch => {
+        dispatch(toggleDisabledButtons(true, ID))
+        usersAPI.createFollow(ID)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(toggleFollow(ID))
+                }
+                dispatch(toggleDisabledButtons(false,ID))
+            })
+    }
+}
 
 export default usersPageReducer

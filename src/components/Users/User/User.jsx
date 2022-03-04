@@ -2,6 +2,7 @@ import style from './User.module.css'
 import {Link} from "react-router-dom";
 import axios from "axios";
 import {usersAPI} from "../../../API/api";
+import {deleteFollow} from "../../../redux/reducers/usersPage-reducer";
 
 
 
@@ -17,23 +18,9 @@ const User = props => {
             <div>
                 <button disabled={props.disabledButtons.some(el => el === props.id)} onClick={() => {
                     if(props.isfollowing === true) {
-                        props.toggleDisabledButtons(true, props.id)
-                        usersAPI.deleteFollow(props.id)
-                            .then(data => {
-                            if(data.resultCode === 0) {
-                                props.toggleFollow(props.id)
-                            }
-                                props.toggleDisabledButtons(false, props.id)
-                        })
+                        props.deleteFollow(props.id)
                     } else {
-                        props.toggleDisabledButtons(true, props.id)
-                       usersAPI.createFollow(props.id)
-                        .then(data => {
-                            if(data.resultCode === 0) {
-                                props.toggleFollow(props.id)
-                            }
-                            props.toggleDisabledButtons(false, props.id)
-                        })
+                        props.addFollow(props.id)
                     }
 
                 }

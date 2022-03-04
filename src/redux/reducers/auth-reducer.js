@@ -1,3 +1,5 @@
+import {authAPI} from "../../API/api";
+
 const SETAUTHDATA = 'SET-AUTH-DATA';
 const SETFETCHING = 'SET-FETCHING';
 
@@ -29,6 +31,17 @@ const authReducer = (state = initialState, action) => {
 
 export const setAuthData = authData => ({type: SETAUTHDATA, authData})
 export const setFetching = fetchingStatus => ({type: SETFETCHING, fetchingStatus})
+
+export const getAuth = () => dispatch => {
+    dispatch(setFetching(true))
+    authAPI.getAuth()
+        .then(data => {
+           dispatch(setFetching(false))
+            if (data.resultCode === 0) {
+                dispatch(setAuthData(data.data))
+            }
+        })
+}
 
 export default authReducer
 
