@@ -15,7 +15,6 @@ const Messages = props => {
     const onChangeText = e => {
         props.changeMessageText(e.target.value)
     }
-    if(!props.authData) return <Redirect to='/login'/>
     return (
         <div>
             <div className={s.messages}>
