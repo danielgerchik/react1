@@ -12,6 +12,7 @@ import {
 import React from "react";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
+import {compose} from "redux";
 
 class UsersComponentAPI extends React.Component {
 
@@ -49,10 +50,17 @@ const mapStateToProps = state => {
 }
 
 
-const UsersContainer = connect(mapStateToProps, {
+export default compose(connect(mapStateToProps, {
     toggleFollow, setUsers, setTotalCount,
     setCurrentPage, changeFetching, toggleDisabledButtons,
     getUsers, deleteFollow, addFollow
-})(UsersComponentAPI)
+}))(UsersComponentAPI)
 
-export default UsersContainer
+
+// const UsersContainer = connect(mapStateToProps, {
+//     toggleFollow, setUsers, setTotalCount,
+//     setCurrentPage, changeFetching, toggleDisabledButtons,
+//     getUsers, deleteFollow, addFollow
+// })(UsersComponentAPI)
+
+// export default UsersContainer

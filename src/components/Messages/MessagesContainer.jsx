@@ -2,6 +2,7 @@ import {addMessage, changeMessageText} from "../../redux/reducers/messagePage-re
 import Messages from "./Messages";
 import {connect} from "react-redux";
 import {WithRedirect} from "../../HOC/withRedirect";
+import {compose} from "redux";
 
 
 
@@ -14,7 +15,14 @@ const mapStateToProps = state => {
 }
 
 
-export default WithRedirect(connect(mapStateToProps, {addMessage, changeMessageText})(Messages));
+
+export default compose(
+    WithRedirect,
+    connect(mapStateToProps, {addMessage, changeMessageText})
+)(Messages)
+
+
+// WithRedirect(connect(mapStateToProps, {addMessage, changeMessageText})(Messages));
 
 
 
