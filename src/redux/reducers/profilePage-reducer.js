@@ -1,8 +1,9 @@
-import {profileAPI} from "../../API/api";
+import {profileAPI, statusAPI} from "../../API/api";
 
 const ADDPOST = 'ADD-POST';
 const CHANGETEXTVALUE = 'CHANGE-TEXT-VALUE';
 const SETUSERPROFILE = 'SET-USER-PROFILE';
+const SETSTATUS = 'SET-STATUS';
 
 const initialState = {
     postsArray: [
@@ -11,7 +12,8 @@ const initialState = {
         {number: "Post3"},
     ],
     newText: '',
-    userProfile: null
+    userProfile: null,
+    status: ''
 }
 
 const profilePageReducer = (state = initialState, action) => {
@@ -34,6 +36,11 @@ const profilePageReducer = (state = initialState, action) => {
                 ...state,
                 userProfile: action.userData
             }
+        case SETSTATUS:
+            return {
+                ...state,
+                status: action.status
+            }
 
         default:
             return state
@@ -44,12 +51,35 @@ const profilePageReducer = (state = initialState, action) => {
 export const AddPost = () => ({type: ADDPOST})
 export const ChangeTextValue = text => ({type: CHANGETEXTVALUE, newText: text})
 export const setUserProfile = userData => ({type: SETUSERPROFILE, userData})
+export const setStatus = status => ({type: SETSTATUS, status})
 
 export const getProfile = userID => {
     return dispatch => {
         profileAPI.getProfile(userID)
             .then(data => {
                 dispatch(setUserProfile(data))
+            })
+    }
+}
+
+export const getStatusTH = ID => {
+    return dispatch => {
+        statusAPI.getStatus(ID)
+            .then(response => {
+                dispatch(setStatus(response))
+            })
+    }
+}
+
+
+export const setStatusTH = statusText => {
+
+    return dispatch => {
+        statusAPI.setStatus(statusText.status)
+            .then(response => {
+                if(response.status === 200) {
+                    dispatch(setStatus(statusText.status))
+                }
             })
     }
 }

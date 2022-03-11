@@ -7,6 +7,7 @@ class Info extends React.Component {
 
     state = {
         editMode: false,
+        status: this.props.status,
     }
     enableEditMode = () => {
         this.setState(
@@ -15,15 +16,24 @@ class Info extends React.Component {
             }
         )
     }
-    stopEditMode = () => {
+    stopEditMode = (el) => {
         this.setState(
             {
                 editMode: false,
             }
         )
+        this.props.setStatus({status: el.target.value})
+    }
+    onChange = el => {
+        this.setState(
+            {
+                status: el.target.value
+            }
+        )
     }
 
     render() {
+
         if (!this.props.userProfile) {
             return <Preloader/>
         }
@@ -38,8 +48,8 @@ class Info extends React.Component {
                     <div className={s.status}>
                         {
                             this.state.editMode
-                                ? <input autoFocus={true} onBlur={this.stopEditMode} value={this.props.status}/>
-                                : <div onClick={this.enableEditMode}>{this.props.status}</div>
+                                ? <input autoFocus={true} onBlur={this.stopEditMode} onChange={this.onChange} value={this.state.status}/>
+                                : <div onClick={this.enableEditMode}>{this.props.status || 'no status'}</div>
                         }
                     </div>
 

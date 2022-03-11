@@ -30,3 +30,12 @@ export const profileAPI = {
         return instanse.get(`profile/${ID}`).then(response => response = response.data)
     }
 }
+
+export const statusAPI = {
+    getStatus(ID) {
+        return instanse.get(`profile/status/${ID}`).then(response => response = response.data)
+    },
+    setStatus(status) {
+        return instanse.put(`profile/status`, {status: status})
+    }
+}
