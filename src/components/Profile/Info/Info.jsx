@@ -31,6 +31,16 @@ class Info extends React.Component {
             }
         )
     }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log(prevState.status);
+        if(this.props.status !== prevState.status) {
+            this.setState(
+                {
+                    status: this.props.status,
+                }
+            )
+        }
+    }
 
     render() {
 
