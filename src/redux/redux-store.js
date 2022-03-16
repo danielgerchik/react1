@@ -4,13 +4,15 @@ import messagePageReducer from "./reducers/messagePage-reducer";
 import usersPageReducer from "./reducers/usersPage-reducer";
 import authReducer from "./reducers/auth-reducer";
 import thunk from "redux-thunk";
+import { reducer as formReducer } from 'redux-form'
 
 
 const reducers = combineReducers({
     profilePage: profilePageReducer,
     messagesPage:messagePageReducer,
     usersPage: usersPageReducer,
-    auth: authReducer
+    auth: authReducer,
+    form: formReducer,
 })
 
 
