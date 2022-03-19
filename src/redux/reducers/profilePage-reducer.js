@@ -21,7 +21,7 @@ const profilePageReducer = (state = initialState, action) => {
         case ADDPOST:
             return {
                 ...state,
-                postsArray: [...state.postsArray, {number: state.newText}],
+                postsArray: [...state.postsArray, {number: action.newPost}],
                 newText: ''
             }
 
@@ -48,7 +48,7 @@ const profilePageReducer = (state = initialState, action) => {
 
 }
 
-export const AddPost = () => ({type: ADDPOST})
+export const AddPost = newPost => ({type: ADDPOST, newPost})
 export const ChangeTextValue = text => ({type: CHANGETEXTVALUE, newText: text})
 export const setUserProfile = userData => ({type: SETUSERPROFILE, userData})
 export const setStatus = status => ({type: SETSTATUS, status})

@@ -22,7 +22,7 @@ const messagePageReducer = (state = initialState, action) => {
         case ADDMESSAGE:
             return {
                 ...state,
-                dialogsArray: [...state.dialogsArray, {dialogItem: state.newMessageText}],
+                dialogsArray: [...state.dialogsArray, {dialogItem: action.newMessage}],
                 newMessageText: ''
             }
 
@@ -37,7 +37,7 @@ const messagePageReducer = (state = initialState, action) => {
     }
 }
 
-export const addMessage = () => ({type: ADDMESSAGE})
+export const addMessage = newMessage => ({type: ADDMESSAGE, newMessage})
 export const changeMessageText = text => ({type: CHANGEMESSAGETEXT, newText: text})
 
 export default messagePageReducer
