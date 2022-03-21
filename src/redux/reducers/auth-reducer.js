@@ -46,8 +46,8 @@ export const setIsAuth = (isAuth) => ({type: SETISAUTH, isAuth})
 export const setFetching = fetchingStatus => ({type: SETFETCHING, fetchingStatus})
 
 export const getAuth = () => dispatch => {
-    dispatch(setFetching(true))
-    authAPI.getAuth()
+     dispatch(setFetching(true))
+    return authAPI.getAuth()
         .then(data => {
            dispatch(setFetching(false))
             if (data.resultCode === 0) {

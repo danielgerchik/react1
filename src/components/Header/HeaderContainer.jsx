@@ -6,7 +6,7 @@ import {getAuth, logout, setAuthData, setFetching} from "../../redux/reducers/au
 class HeaderContainer extends React.Component {
 
     componentDidMount() {
-       this.props.getAuth()
+
     }
 
     render() {
@@ -19,6 +19,6 @@ const mapStateToProps = state => {
         isAuth: state.auth.isAuth
     }
 }
-export default connect(mapStateToProps, {setAuthData ,setFetching, getAuth, logout})(HeaderContainer)
+export default connect(mapStateToProps, {setAuthData ,setFetching, logout})(HeaderContainer)
 
 
