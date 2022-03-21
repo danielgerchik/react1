@@ -17,6 +17,9 @@ const loginForm = props => {
             <div>
                 <Field component={FormField} typeField='input' validate={[required, acceptableLength]} name={'remember'} type={'checkbox'} />
             </div>
+
+                {props.error && <div style={{color: "red"}}>{props.error}</div>}
+
             <div>
                 <button>Отправить</button>
             </div>
