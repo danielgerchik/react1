@@ -23,6 +23,12 @@ export const usersAPI = {
 export const authAPI = {
     getAuth() {
         return instanse.get(`auth/me`).then(response => response = response.data)
+    },
+    login(email, password, rememberMe) {
+        return instanse.post(`auth/login`, {email, password, rememberMe}).then(response => response = response.data)
+    },
+    logout() {
+        return instanse.delete(`auth/login`).then(response => response = response.data)
     }
 }
 export const profileAPI = {

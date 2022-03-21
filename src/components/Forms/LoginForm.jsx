@@ -2,7 +2,7 @@ import {Field, reduxForm} from "redux-form";
 import {FormField} from "../common/FormField/FormField";
 import {required, symbolLenght} from "./Validations/Validation";
 
-const acceptableLength = symbolLenght(15)
+const acceptableLength = symbolLenght(30)
 
 const loginForm = props => {
     return (

@@ -13,7 +13,7 @@ const Header = (props) => {
                     </svg>
                 </div>
                 <div className={s.login}>
-                    <Link to="/login">{!props.authData ? 'Авторизоваться' : 'Вы авторизованы'}</Link>
+                    {!props.isAuth ? <Link to="/login">Авторизоваться</Link> : <Link to="/login" onClick={props.logout}>Выйти</Link>}
                 </div>
             </div>
         </header>
