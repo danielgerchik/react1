@@ -1,6 +1,14 @@
-export const getUsersArray = state => {
+import {createSelector} from "reselect";
+
+
+const getUsersArraySimple = state => {
     return state.usersPage.users
 }
+
+export const getUsersArray = createSelector(getUsersArraySimple, users => {
+    return users.filter(u => true)
+})
+
 export const getUsersCount = state => {
     return state.usersPage.usersCount
 }

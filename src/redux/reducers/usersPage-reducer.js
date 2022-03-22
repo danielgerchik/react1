@@ -22,6 +22,7 @@ const users = [
     },
 ]
 const stateInit = {
+    // fake: 10,
     users: [],
     usersCount: 5,
     usersTotalCount: 0,
@@ -33,6 +34,7 @@ const stateInit = {
 const usersPageReducer = (state = stateInit, action) => {
 
     switch (action.type) {
+        // case 'fake': return {...state, fake: state.fake + 1}
         case TOGGLEFOLLOW:
             return {
                 ...state,

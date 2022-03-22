@@ -6,6 +6,12 @@ import reportWebVitals from './reportWebVitals';
 import store from './redux/redux-store';
 import {Provider} from "react-redux";
 
+// setInterval(
+//     ()=>{
+//         store.dispatch({type: 'fake'})
+//     },
+//     1000
+// )
 
     ReactDOM.render(
         <React.StrictMode>

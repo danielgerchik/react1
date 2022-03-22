@@ -34,6 +34,7 @@ class UsersComponentAPI extends React.Component {
     }
 
     render() {
+        // console.log('render users')
         return <>
             {this.props.isFetching ? <Preloader/> : null}
             <Users usersTotalCount={this.props.usersTotalCount} usersCount={this.props.usersCount}
@@ -47,6 +48,7 @@ class UsersComponentAPI extends React.Component {
 }
 
 const mapStateToProps = state => {
+    // console.log('mstp')
     return {
         usersArray: getUsersArray(state),
         usersCount: getUsersCount(state),
