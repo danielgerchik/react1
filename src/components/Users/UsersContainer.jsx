@@ -13,6 +13,14 @@ import React from "react";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
 import {compose} from "redux";
+import {
+    getDisabledButtons,
+    getIsFetching,
+    getUserPage,
+    getUsersArray,
+    getUsersCount,
+    getUsersTotalCount
+} from "../../redux/selectors/users-selectors";
 
 class UsersComponentAPI extends React.Component {
 
@@ -40,12 +48,12 @@ class UsersComponentAPI extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        usersArray: state.usersPage.users,
-        usersCount: state.usersPage.usersCount,
-        usersTotalCount: state.usersPage.usersTotalCount,
-        usersPage: state.usersPage.usersPage,
-        isFetching: state.usersPage.isFetching,
-        disabledButtons: state.usersPage.disabledButtons
+        usersArray: getUsersArray(state),
+        usersCount: getUsersCount(state),
+        usersTotalCount: getUsersTotalCount(state),
+        usersPage: getUserPage(state),
+        isFetching: getIsFetching(state),
+        disabledButtons: getDisabledButtons(state)
     }
 }
 
