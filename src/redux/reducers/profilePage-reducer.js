@@ -4,12 +4,13 @@ const ADDPOST = 'ADD-POST';
 const CHANGETEXTVALUE = 'CHANGE-TEXT-VALUE';
 const SETUSERPROFILE = 'SET-USER-PROFILE';
 const SETSTATUS = 'SET-STATUS';
+const DELETEPOST = 'DELETE-POST';
 
 const initialState = {
     postsArray: [
-        {number: "Post1"},
-        {number: "Post2"},
-        {number: "Post3"},
+        {id: 1,number: "Post1"},
+        {id: 2,number: "Post2"},
+        {id: 3,number: "Post3"},
     ],
     newText: '',
     userProfile: null,
@@ -24,7 +25,11 @@ const profilePageReducer = (state = initialState, action) => {
                 postsArray: [...state.postsArray, {number: action.newPost}],
                 newText: ''
             }
-
+        case DELETEPOST:
+            return {
+                ...state,
+                postsArray: state.postsArray.filter(p => p.id != action.id)
+            }
         case CHANGETEXTVALUE:
             return {
                 ...state,
@@ -49,6 +54,7 @@ const profilePageReducer = (state = initialState, action) => {
 }
 
 export const AddPost = newPost => ({type: ADDPOST, newPost})
+export const deletePost = (id) => ({type: DELETEPOST, id})
 export const ChangeTextValue = text => ({type: CHANGETEXTVALUE, newText: text})
 export const setUserProfile = userData => ({type: SETUSERPROFILE, userData})
 export const setStatus = status => ({type: SETSTATUS, status})

@@ -29,6 +29,7 @@ class App extends Component {
         }
         return (
             <BrowserRouter>
+
                 <div className="wrapper">
                     <HeaderContainer/>
                     <div className="main-row">
@@ -49,6 +50,7 @@ class App extends Component {
 
                     </div>
                 </div>
+
             </BrowserRouter>
         );
     }
