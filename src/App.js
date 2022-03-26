@@ -13,8 +13,9 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import login from "./components/Login/Login";
 import {Component} from "react";
 import Preloader from "./components/common/Preloader/Preloader";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 import {initalization} from "./redux/reducers/app-reducer";
+import store from "./redux/redux-store";
 
 
 class App extends Component {
@@ -28,7 +29,7 @@ class App extends Component {
             return <Preloader/>
         }
         return (
-            <BrowserRouter>
+
 
                 <div className="wrapper">
                     <HeaderContainer/>
@@ -51,7 +52,7 @@ class App extends Component {
                     </div>
                 </div>
 
-            </BrowserRouter>
+
         );
     }
 }
@@ -62,4 +63,13 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {initalization})(App);
+const AppContainer = connect(mapStateToProps, {initalization})(App);
+
+const AppContainerWith = ()=> {
+    return <BrowserRouter>
+        <Provider store={store}>
+            <AppContainer/>
+        </Provider>
+    </BrowserRouter>
+}
+export default AppContainerWith
