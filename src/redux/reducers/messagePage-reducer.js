@@ -1,5 +1,5 @@
-const ADDMESSAGE = 'ADD-MESSAGE'
-const CHANGEMESSAGETEXT = 'CHANGE-MESSAGE-TEXT';
+const ADDMESSAGE = 'MESSAGEPAGE-REDUCER/ADD-MESSAGE'
+const CHANGEMESSAGETEXT = 'MESSAGEPAGE-REDUCER/CHANGE-MESSAGE-TEXT';
 
 const initialState = {
     interlocutorsArray: [
@@ -38,6 +38,6 @@ const messagePageReducer = (state = initialState, action) => {
 }
 
 export const addMessage = newMessage => ({type: ADDMESSAGE, newMessage})
-export const changeMessageText = text => ({type: CHANGEMESSAGETEXT, newText: text})
+export const changeMessageText = newText => ({type: CHANGEMESSAGETEXT, newText})
 
 export default messagePageReducer

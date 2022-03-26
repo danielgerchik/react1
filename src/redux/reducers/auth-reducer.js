@@ -1,9 +1,9 @@
 import {authAPI} from "../../API/api";
 import {stopSubmit} from "redux-form";
 
-const SETAUTHDATA = 'SET-AUTH-DATA';
-const SETFETCHING = 'SET-FETCHING';
-const SETISAUTH = 'SET-IS-AUTH';
+const SETAUTHDATA = 'AUTH-REDUCER/SET-AUTH-DATA';
+const SETFETCHING = 'AUTH-REDUCER/SET-FETCHING';
+const SETISAUTH = 'AUTH-REDUCER/SET-IS-AUTH';
 
 
 const initialState = {
@@ -24,9 +24,9 @@ const authReducer = (state = initialState, action) => {
         case SETAUTHDATA:
             return {
                 ...state,
-                id: action.authData.id,
-                email: action.authData.email,
-                login: action.authData.login,
+                id: action.id,
+                email: action.email,
+                login: action.login,
             }
         case SETFETCHING:
             return {
@@ -41,7 +41,7 @@ const authReducer = (state = initialState, action) => {
 }
 
 
-export const setAuthData = (authData) => ({type: SETAUTHDATA, authData})
+export const setAuthData = ({id, email, login}) => ({type: SETAUTHDATA, id, email, login})
 export const setIsAuth = (isAuth) => ({type: SETISAUTH, isAuth})
 export const setFetching = fetchingStatus => ({type: SETFETCHING, fetchingStatus})
 
@@ -56,23 +56,19 @@ export const getAuth = () => dispatch => {
             }
         })
 }
-export const login = (email, password, rememberMe) => dispatch => {
-    authAPI.login(email, password, rememberMe)
-        .then(data => {
+export const login = (email, password, rememberMe) => async dispatch => {
+    const data = await authAPI.login(email, password, rememberMe)
             if (data.resultCode === 0) {
                 dispatch(setIsAuth(true))
             } else {
                 dispatch(stopSubmit('login', {_error: data.messages.length > 0 ? data.messages[0] : 'some error'}))
             }
-        })
 }
-export const logout = () => dispatch => {
-    authAPI.logout()
-        .then(data => {
+export const logout = () => async dispatch => {
+   const data = await authAPI.logout()
             if (data.resultCode === 0) {
                 dispatch(setIsAuth(false))
             }
-        })
 }
 
 export default authReducer

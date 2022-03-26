@@ -1,11 +1,11 @@
 import {usersAPI} from "../../API/api";
 
-const TOGGLEFOLLOW = 'TOGGLE-FOLLOW'
-const SETUSERS = 'SET-USERS'
-const SETTOTALCOUNT = 'SET-TOTAL-COUNT'
-const SETCURRENTPAGE = 'SET-CURRENT-PAGE'
-const CHANGEFETCHING = 'CHANGE-FETCHING'
-const TOGGLEDISABLEDBATTONS = 'TOGGLE-DISABLED-BATTONS'
+const TOGGLEFOLLOW = 'USERSPAGE-REDUCER/TOGGLE-FOLLOW'
+const SETUSERS = 'USERSPAGE-REDUCER/SET-USERS'
+const SETTOTALCOUNT = 'USERSPAGE-REDUCER/SET-TOTAL-COUNT'
+const SETCURRENTPAGE = 'USERSPAGE-REDUCER/SET-CURRENT-PAGE'
+const CHANGEFETCHING = 'USERSPAGE-REDUCER/CHANGE-FETCHING'
+const TOGGLEDISABLEDBATTONS = 'USERSPAGE-REDUCER/TOGGLE-DISABLED-BATTONS'
 
 const users = [
     {
@@ -22,7 +22,6 @@ const users = [
     },
 ]
 const stateInit = {
-    // fake: 10,
     users: [],
     usersCount: 5,
     usersTotalCount: 0,
@@ -32,9 +31,7 @@ const stateInit = {
 }
 
 const usersPageReducer = (state = stateInit, action) => {
-
     switch (action.type) {
-        // case 'fake': return {...state, fake: state.fake + 1}
         case TOGGLEFOLLOW:
             return {
                 ...state,
@@ -82,48 +79,42 @@ const usersPageReducer = (state = stateInit, action) => {
     }
 }
 
-export const toggleFollow = userID => ({type: TOGGLEFOLLOW, userID: userID})
-export const setUsers = users => ({type: SETUSERS, users: users})
+export const toggleFollow = userID => ({type: TOGGLEFOLLOW, userID})
+export const setUsers = users => ({type: SETUSERS, users})
 export const setTotalCount = totalCount => ({type: SETTOTALCOUNT, totalCount})
 export const setCurrentPage = currentPage => ({type: SETCURRENTPAGE, currentPage})
 export const changeFetching = fetchingValue => ({type: CHANGEFETCHING, fetchingValue})
 export const toggleDisabledButtons = (disableStatus, newButt) => ({type: TOGGLEDISABLEDBATTONS, disableStatus, newButt})
 
 export const getUsers = (page, count) => {
-    return dispatch => {
+    return async dispatch => {
        dispatch(setCurrentPage(page))
         dispatch(changeFetching(true))
-        usersAPI.getUsers(page, count)
-            .then(data => {
+      const data = await usersAPI.getUsers(page, count)
                 dispatch(setUsers(data.items))
                 dispatch(setTotalCount(data.totalCount))
                 dispatch(changeFetching(false))
-            });
     }
 }
 
 export const deleteFollow = (ID) => {
-    return dispatch => {
+    return async dispatch => {
         dispatch(toggleDisabledButtons(true, ID))
-        usersAPI.deleteFollow(ID)
-            .then(data => {
+        const data = await usersAPI.deleteFollow(ID)
                 if (data.resultCode === 0) {
                     dispatch(toggleFollow(ID))
                 }
                 dispatch(toggleDisabledButtons(false,ID))
-            })
     }
 }
 export const addFollow = (ID) => {
-    return dispatch => {
+    return async dispatch => {
         dispatch(toggleDisabledButtons(true, ID))
-        usersAPI.createFollow(ID)
-            .then(data => {
+      const data = await usersAPI.createFollow(ID)
                 if (data.resultCode === 0) {
                     dispatch(toggleFollow(ID))
                 }
                 dispatch(toggleDisabledButtons(false,ID))
-            })
     }
 }
 

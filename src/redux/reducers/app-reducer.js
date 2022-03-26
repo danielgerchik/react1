@@ -1,6 +1,6 @@
 import {getAuth} from "./auth-reducer";
 
-const SETINITALIZATION = 'SET-INITALIZATION';
+const SETINITALIZATION = 'APP-REDUCER/SET-INITALIZATION';
 
 
 const initialState = {

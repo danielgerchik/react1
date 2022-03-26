@@ -1,10 +1,10 @@
 import {profileAPI, statusAPI} from "../../API/api";
 
-const ADDPOST = 'ADD-POST';
-const CHANGETEXTVALUE = 'CHANGE-TEXT-VALUE';
-const SETUSERPROFILE = 'SET-USER-PROFILE';
-const SETSTATUS = 'SET-STATUS';
-const DELETEPOST = 'DELETE-POST';
+const ADDPOST = 'PROFILEPAGE-REDUCER/ADD-POST';
+const CHANGETEXTVALUE = 'PROFILEPAGE-REDUCER/CHANGE-TEXT-VALUE';
+const SETUSERPROFILE = 'PROFILEPAGE-REDUCER/SET-USER-PROFILE';
+const SETSTATUS = 'PROFILEPAGE-REDUCER/SET-STATUS';
+const DELETEPOST = 'PROFILEPAGE-REDUCER/DELETE-POST';
 
 const initialState = {
     postsArray: [
@@ -54,39 +54,33 @@ const profilePageReducer = (state = initialState, action) => {
 }
 
 export const AddPost = newPost => ({type: ADDPOST, newPost})
-export const deletePost = (id) => ({type: DELETEPOST, id})
-export const ChangeTextValue = text => ({type: CHANGETEXTVALUE, newText: text})
+export const deletePost = id => ({type: DELETEPOST, id})
+export const ChangeTextValue = newText => ({type: CHANGETEXTVALUE, newText})
 export const setUserProfile = userData => ({type: SETUSERPROFILE, userData})
 export const setStatus = status => ({type: SETSTATUS, status})
 
 export const getProfile = userID => {
-    return dispatch => {
-        profileAPI.getProfile(userID)
-            .then(data => {
+    return async dispatch => {
+      const data = await profileAPI.getProfile(userID)
                 dispatch(setUserProfile(data))
-            })
     }
 }
 
 export const getStatusTH = ID => {
-    return dispatch => {
-        statusAPI.getStatus(ID)
-            .then(response => {
+    return async dispatch => {
+        const response = await statusAPI.getStatus(ID)
                 dispatch(setStatus(response))
-            })
     }
 }
 
 
 export const setStatusTH = statusText => {
 
-    return dispatch => {
-        statusAPI.setStatus(statusText.status)
-            .then(response => {
+    return async dispatch => {
+       const response = await statusAPI.setStatus(statusText.status)
                 if(response.status === 200) {
                     dispatch(setStatus(statusText.status))
                 }
-            })
     }
 }
 
