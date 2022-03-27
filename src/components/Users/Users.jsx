@@ -14,7 +14,8 @@ const Users = (props) => {
                                                   deleteFollow={props.deleteFollow} addFollow={props.addFollow}/>)
     return (
         <div>
-            <Pagination usersTotalCount={props.usersTotalCount} usersCount={props.usersCount} currentPage={props.currentPage} usersPage={props.usersPage}/>
+            <Pagination portionSize={15} usersTotalCount={props.usersTotalCount} usersCount={props.usersCount}
+                        currentPage={props.currentPage} usersPage={props.usersPage}/>
             {users}
         </div>
     )
