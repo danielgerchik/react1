@@ -1,3 +1,4 @@
+import React, {Suspense} from "react";
 import './fonts.css'
 import './reset.css';
 import './App.css';
@@ -10,13 +11,14 @@ import MessagesContainer from "./components/Messages/MessagesContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import login from "./components/Login/Login";
+// import login from "./components/Login/Login";
 import {Component} from "react";
 import Preloader from "./components/common/Preloader/Preloader";
 import {connect, Provider} from "react-redux";
 import {initalization} from "./redux/reducers/app-reducer";
 import store from "./redux/redux-store";
 
+const login = React.lazy(() => import("./components/Login/Login"))
 
 class App extends Component {
 
@@ -25,18 +27,19 @@ class App extends Component {
     }
 
     render() {
-        if(!this.props.isInitalizated) {
+        if (!this.props.isInitalizated) {
             return <Preloader/>
         }
         return (
 
 
-                <div className="wrapper">
-                    <HeaderContainer/>
-                    <div className="main-row">
-                        <Menu/>
+            <div className="wrapper">
+                <HeaderContainer/>
+                <div className="main-row">
+                    <Menu/>
 
-                        <main className="content">
+                    <main className="content">
+                        <Suspense fallback={<Preloader/>}>
                             <Switch>
                                 <Route path="/login" component={login}/>
                                 <Route path="/profile/:userID?" component={ProfileContainer}/>
@@ -45,12 +48,14 @@ class App extends Component {
                                 <Route path="/news" component={News}/>
                                 <Route path="/music" component={Music}/>
                                 <Route path="/settings" component={Settings}/>
+
                             </Switch>
-                        </main>
+                        </Suspense>
+                    </main>
 
 
-                    </div>
                 </div>
+            </div>
 
 
         );
@@ -65,7 +70,7 @@ const mapStateToProps = state => {
 
 const AppContainer = connect(mapStateToProps, {initalization})(App);
 
-const AppContainerWith = ()=> {
+const AppContainerWith = () => {
     return <BrowserRouter>
         <Provider store={store}>
             <AppContainer/>
