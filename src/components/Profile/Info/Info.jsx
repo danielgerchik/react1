@@ -2,6 +2,7 @@ import s from "./Info.module.css";
 import Preloader from "../../common/Preloader/Preloader";
 import profileIMG from "../../../img/25.jpg"
 import React from "react";
+import userDefaultPhotoLarge from '../../../img/userDefaultLarge.png'
 
 class Info extends React.Component {
 
@@ -31,6 +32,9 @@ class Info extends React.Component {
             }
         )
     }
+    onSelectedPhoto = event=> {
+        this.props.setPhoto(event.target.files[0])
+    }
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log(prevState.status);
         if(this.props.status !== prevState.status) {
@@ -51,9 +55,10 @@ class Info extends React.Component {
             <div className={s.about}>
                 <div className={s.img}>
                     <img
-                        src={this.props.userProfile.photos.large || 'https://klike.net/uploads/posts/2019-03/1551511784_4.jpg'}
+                        src={this.props.userProfile.photos.large || userDefaultPhotoLarge}
                         alt=""/>
                 </div>
+                {this.props.isMyProfile && <div className={s.addPhoto}><input onChange={this.onSelectedPhoto} type="file"/></div>}
                 <div className={s.secription}>
                     <div className={s.status}>
                         {

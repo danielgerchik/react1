@@ -2,9 +2,9 @@ import s from "./Info.module.css";
 import Preloader from "../../common/Preloader/Preloader";
 import profileIMG from "../../../img/25.jpg"
 import React, {useEffect, useState} from "react";
+import userDefaultPhotoLarge from '../../../img/userDefaultLarge.png'
 
 const InfoWithHooks = props => {
-
   const [editMode, setEditMode] = useState(false)
     const [status, setStatus] = useState(props.status)
 
@@ -25,6 +25,9 @@ const InfoWithHooks = props => {
     const onChange = (el)=> {
         setStatus(el.target.value)
     }
+    const onSelectedPhoto = event=> {
+        props.setPhoto(event.target.files[0])
+    }
 
         if (!props.userProfile) {
             return <Preloader/>
@@ -33,9 +36,11 @@ const InfoWithHooks = props => {
             <div className={s.about}>
                 <div className={s.img}>
                     <img
-                        src={props.userProfile.photos.large || 'https://klike.net/uploads/posts/2019-03/1551511784_4.jpg'}
+                        src={props.userProfile.photos.large || userDefaultPhotoLarge}
                         alt=""/>
+                    {props.isMyProfile && <div className={s.addPhoto}><input onChange={onSelectedPhoto} type="file"/></div>}
                 </div>
+
                 <div className={s.secription}>
                     <div className={s.status}>
                         {

@@ -5,6 +5,7 @@ const CHANGETEXTVALUE = 'PROFILEPAGE-REDUCER/CHANGE-TEXT-VALUE';
 const SETUSERPROFILE = 'PROFILEPAGE-REDUCER/SET-USER-PROFILE';
 const SETSTATUS = 'PROFILEPAGE-REDUCER/SET-STATUS';
 const DELETEPOST = 'PROFILEPAGE-REDUCER/DELETE-POST';
+const SETPHOTO = 'PROFILEPAGE-REDUCER/SETPHOTO';
 
 const initialState = {
     postsArray: [
@@ -46,6 +47,11 @@ const profilePageReducer = (state = initialState, action) => {
                 ...state,
                 status: action.status
             }
+        case SETPHOTO:
+            return {
+                ...state,
+                userProfile: {...state.userProfile, photos: {...action.photos.photos}}
+            }
 
         default:
             return state
@@ -58,6 +64,7 @@ export const deletePost = id => ({type: DELETEPOST, id})
 export const ChangeTextValue = newText => ({type: CHANGETEXTVALUE, newText})
 export const setUserProfile = userData => ({type: SETUSERPROFILE, userData})
 export const setStatus = status => ({type: SETSTATUS, status})
+export const setPhoto = photos => ({type: SETPHOTO, photos})
 
 export const getProfile = userID => {
     return async dispatch => {
@@ -81,6 +88,13 @@ export const setStatusTH = statusText => {
                 if(response.status === 200) {
                     dispatch(setStatus(statusText.status))
                 }
+    }
+}
+
+export const setPhotoTH = photo => async dispatch => {
+    const response = await profileAPI.setPhoto(photo)
+    if(response.resultCode === 0) {
+        dispatch(setPhoto(response.data))
     }
 }
 

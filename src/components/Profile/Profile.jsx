@@ -6,7 +6,9 @@ import InfoWithHooks from "./Info/InfoWithHooks";
 const Profile = props => {
     return (
         <div className={s.profile}>
-            <InfoWithHooks status={props.status} userProfile={props.userProfile} setStatus={props.setStatus}/>
+            <InfoWithHooks status={props.status} userProfile={props.userProfile}
+                           setStatus={props.setStatus} setPhoto={props.setPhoto}
+                           isMyProfile={props.isMyProfile}/>
             <PostsContainer/>
         </div>
     )

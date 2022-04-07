@@ -34,6 +34,11 @@ export const authAPI = {
 export const profileAPI = {
     getProfile(ID) {
         return instanse.get(`profile/${ID}`).then(response => response = response.data)
+    },
+    setPhoto(photo) {
+        const formData = new FormData()
+        formData.append('image', photo)
+        return instanse.put(`profile/photo`, formData).then(response => response = response.data)
     }
 }
 
